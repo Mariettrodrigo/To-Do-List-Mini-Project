@@ -17,9 +17,10 @@ function addTask(){
     }
     //to clear searchbar again
     inputBox.value = "";
-
+    saveData();
 }
 
+//to add tasks delete or mark checked
 listcontainer.addEventListener("click", function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
@@ -28,3 +29,14 @@ listcontainer.addEventListener("click", function(e){
         e.target.parentElement.remove();
     }
 }, false);
+
+//to save tasks
+function saveData(){
+    localStorage.setItem("data", listcontainer.innerHTML);
+}
+
+//to open data whenever open
+function showTask(){
+    listcontainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
